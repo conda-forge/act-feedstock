@@ -18,6 +18,8 @@ requirements:
     - {{ compiler('go') }}
     - make
     - go-licenses
+  host:
+    - {{ compiler('go') }}
 
 test:
   commands:
