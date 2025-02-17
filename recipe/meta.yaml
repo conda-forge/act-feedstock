@@ -17,11 +17,10 @@ build:
     - export GOFLAGS="'-ldflags=-X main.version={{ version }}'"  # [unix]
     - set GOFLAGS='-ldflags=-X main.version={{ version }} '       # [win]
 
+    - unset CONDA_GO_COMPILER;  # [ not win ]
     - go build -o act main.go &&  mkdir $PREFIX/bin && cp act $PREFIX/bin/act
     # TODO: This is due to a bug in our go-lang patch
     #       Error message is go install can't write to GOBIN when cross compiling
-    - unset CONDA_GO_COMPILER;  # [build_platform != target_platform and not win]
-    - go build -o act main.go &&  mkdir $PREFIX/bin && cp act $PREFIX/bin/act
     - go-licenses save . --save_path "./license-files/"
 
 requirements:
