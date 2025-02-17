@@ -20,7 +20,7 @@ build:
     - unset CONDA_GO_COMPILER;  # [not win]
     - go build -o act main.go
     - mkdir $PREFIX/bin && cp act $PREFIX/bin/act  # [not win]
-    - dir && mkdir %PREFIX%\bin && copy act %PREFIX%\bin\act  # [win]
+    - dir && mkdir %PREFIX%\bin && copy act %PREFIX%\bin\act.exe   && dir %PREFIX%\bin # [win]
     # TODO: This is due to a bug in our go-lang patch
     #       Error message is go install can't write to GOBIN when cross compiling
     - go-licenses save . --save_path "./license-files/"
