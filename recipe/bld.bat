@@ -6,11 +6,11 @@ go build -o act main.go
 if errorlevel 1 exit 1
 dir
 if errorlevel 1 exit 1
-md %PREFIX%/bin
+md "%PREFIX%\bin"
 if errorlevel 1 exit 1
-copy act %PREFIX%/bin/act.exe
+copy act "%PREFIX%\bin\act.exe"
 if errorlevel 1 exit 1
-dir %PREFIX%/bin
+dir "%PREFIX%\bin"
 if errorlevel 1 exit 1
 
 @REM TODO: This is due to a bug in our go-lang patch
