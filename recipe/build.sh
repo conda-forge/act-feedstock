@@ -1,14 +1,12 @@
 #!/bin/bash
 
-set -exuo pipefail
+set -xeo pipefail
 
-mkdir -p gopath/bin
-export GOPATH=$(pwd)/gopath
-
-make build VERSION=${PKG_VERSION}
-mkdir -p ${PREFIX}/bin
-make install VERSION=${PKG_VERSION}
-
-chmod -R u+w ${GOPATH}
-
-go-licenses save . --save_path="./license-files/"
+export GOFLAGS="'-ldflags=-X main.version=${PKG_VERSION}'"
+unset CONDA_GO_COMPILER
+go build -o act main.go
+mkdir $PREFIX/bin
+install -m 775 act $PREFIX/bin/
+# TODO: This is due to a bug in our go-lang patch
+# Error message is go install can't write to GOBIN when cross compiling
+go-licenses save . --save_path "./license-files/"
