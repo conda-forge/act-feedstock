@@ -6,7 +6,7 @@ go build -o act main.go
 if errorlevel 1 exit 1
 dir
 if errorlevel 1 exit 1
-mkdir %PREFIX%/bin
+md %PREFIX%/bin
 if errorlevel 1 exit 1
 copy act %PREFIX%/bin/act.exe
 if errorlevel 1 exit 1
